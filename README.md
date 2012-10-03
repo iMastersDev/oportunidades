@@ -9,9 +9,10 @@ Plataforma para organização de oportunidades de trabalho em PHP
 ### Como contribuir
 
 ### IRC
+[#devtalk no Freenode](https://webchat.freenode.net/?channels=devtalk)
 
 ### Organização
-[iMasters](http://imasters.com.br
+[iMasters](http://imasters.com.br)
 
 ### Links para Hangouts iMasters
 
