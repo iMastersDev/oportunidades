@@ -5,8 +5,10 @@ Oportunidades
 Plataforma para organização de oportunidades de trabalho em PHP
 
 ### Como postar oportunidades
+Em breve...
 
 ### Como contribuir
+Em breve...
 
 ### IRC
 [#devtalk no Freenode](https://webchat.freenode.net/?channels=devtalk)
