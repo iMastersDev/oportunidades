@@ -1,7 +1,2 @@
 vendor
-.*
-!/.gitignore
 composer.phar
-composer.lock
-/nbproject/
-/vendor/

@@ -10,7 +10,7 @@
             "email": "augusto@phpsp.org.br"
         }
     ],
-    "autoload": { 
+    "autoload": {
         "psr-0": {
             "" : "src/" }
     },
