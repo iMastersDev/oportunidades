@@ -1,0 +1,96 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+div {
+    border: solid 1px red;
+}
+
+.container {
+    width: 980px;
+    position: relative;
+    display: block;
+    margin: 0px auto;
+    border-color: #ccc;
+}
+
+header {
+    height: 400px;
+    border: solid 1px #000;
+}
+
+
+header {
+}
+
+header .nav-wrapper {
+    margin-top: 10px;
+    overflow: hidden;
+    padding: 20px
+}
+
+header nav {
+    float: right;
+    margin-top: 5px;
+    margin-right: 70px;
+}
+
+header h1 {
+    float: left;
+    margin-left: 62px;
+}
+
+header nav ul {
+    border: solid 1px #ccc;
+}
+
+header nav ul li {
+    display: inline-block;
+    padding: 4px 20px 4px 20px;
+}
+
+header .actions-wrapper {
+    overflow: hidden;
+    width: 800px;
+    margin: 0px auto;
+    margin-top: 130px
+}
+
+header .actions-wrapper .search {
+    float: left;
+    border: solid 1px #000;
+    height: 60px;
+    width: 250px;
+}
+
+header .actions-wrapper .post-button {
+    float: right;
+    border: solid 1px #000;
+    height: 60px;
+    width: 250px;
+}
+
+article {
+    border: solid 1px #444;
+    margin: 10px 0px 10px 0px;
+}
+
+article h3 {
+    padding: 30px 0px 0px 90px;
+}
+
+footer {
+    border: 1px solid #333;
+}
+
+footer span {
+    text-align: right;
+    width: 100%;
+}
+
+footer .search {
+    height: 60px;
+    width: 800px;
+    margin: 0px auto;
+}
