@@ -1,5 +1,5 @@
 <?php
-namespace Ophportunidades\Entity;
+namespace Ophportunidades\DataAccess\Entity;
 
 class PositionTest extends \PHPUnit_Framework_TestCase
 {
@@ -7,18 +7,15 @@ class PositionTest extends \PHPUnit_Framework_TestCase
     public function assertPreConditions()
     {
         $this->assertTrue(
-            class_exists($class = 'Ophportunidades\Entity\Position'),
-            'Class not found: '.$class
+                class_exists($class = 'Ophportunidades\DataAccess\Entity\Position'),
+                'Class not found: '.$class
         );
     }
 
     public function testInstantiationWithoutArgumentsShouldWork()
     {
         $instance = new Position();
-        $this->assertInstanceOf(
-            'Ophportunidades\Entity\Position',
-            $instance
-        );
+        $this->assertInstanceOf('Ophportunidades\DataAccess\Entity\Position', $instance);
     }
 
     /**
@@ -27,19 +24,10 @@ class PositionTest extends \PHPUnit_Framework_TestCase
     public function testSetTitleWithValidDataShouldWork()
     {
         $instance = new Position();
-        $title    = 'Titulo da oferta de emprego';
-        $return   = $instance->setTitle($title);
-        $this->assertEquals(
-            $instance,
-            $return,
-            'Rerturned value should be the same instance for fluent interface'
-        );
-        $this->assertAttributeEquals(
-            $title,
-            'title',
-            $instance,
-            'Attribute was not correctly set'
-        );
+        $title = 'Titulo da oferta de emprego';
+        $return = $instance->setTitle($title);
+        $this->assertEquals($instance, $return, 'Rerturned value should be the same instance for fluent interface');
+        $this->assertAttributeEquals($title, 'title', $instance, 'Attribute was not correctly set');
     }
 
     /**
@@ -52,17 +40,14 @@ class PositionTest extends \PHPUnit_Framework_TestCase
         $instance = new Position();
         $instance->setTitle($invalidTitle);
     }
-    
+
     public function testShouldDefineAndRetrieveTheTitle()
     {
-        $title      = 'oPHPortunidades';
+        $title = 'oPHPortunidades';
         $instance = new Position();
         $instance->setTitle($title);
 
-        $this->assertTrue(
-            method_exists($instance, 'getTitle'),
-            'There is no method getTitle on object'
-        );
+        $this->assertTrue(method_exists($instance, 'getTitle'), 'There is no method getTitle on object');
         $this->assertEquals($title, $instance->getTitle());
     }
 
@@ -71,22 +56,13 @@ class PositionTest extends \PHPUnit_Framework_TestCase
      */
     public function testShouldExistsSetterForDescription()
     {
-        $instance    = new Position();
+        $instance = new Position();
         $description = 'Descrição da oferta de emprego';
-        $return      = $instance->setDescription($description);
-        $this->assertEquals(
-            $instance,
-            $return,
-            'Rerturned value should be the same instance for fluent interface'
-        );
-        $this->assertAttributeEquals(
-            $description,
-            'description',
-            $instance,
-            'Attribute was not correctly set'
-        );
+        $return = $instance->setDescription($description);
+        $this->assertEquals($instance, $return, 'Rerturned value should be the same instance for fluent interface');
+        $this->assertAttributeEquals($description, 'description', $instance, 'Attribute was not correctly set');
     }
-    
+
     /**
      * @expectedException \InvalidArgumentException
      */
@@ -95,38 +71,38 @@ class PositionTest extends \PHPUnit_Framework_TestCase
         $instance = new Position();
         $instance->setDescription(new \stdClass());
     }
-    
+
     public function testShouldRetrieveADefinedDescription()
     {
         $description = 'This is my description';
 
         $instance = new Position();
         $instance->setDescription($description);
-        
-        $this->assertTrue(
-            method_exists($instance, 'getDescription'),
-            'There is no method getDescription on object'
-        );
+
+        $this->assertTrue(method_exists($instance, 'getDescription'), 'There is no method getDescription on object');
         $this->assertEquals($description, $instance->getDescription());
     }
-    
+
     /**
      * @expectedException InvalidArgumentException
      */
-    public function testShouldThorwsAnExceptionWhenSettingNull() {
+    public function testShouldThorwsAnExceptionWhenSettingNull()
+    {
         $instance = new Position();
         $instance->setPlace();
     }
-    
+
     /**
      * @expectedException InvalidArgumentException
      */
-    public function testShouldThrowsAnExceptionWhenSettingAnInvalidArgument() {
+    public function testShouldThrowsAnExceptionWhenSettingAnInvalidArgument()
+    {
         $instance = new Position();
         $instance->setPlace(10);
     }
-    
-    public function testGetterReturnsExactlySameValueThanSettedInSetter() {
+
+    public function testGetterReturnsExactlySameValueThanSettedInSetter()
+    {
         $instance = new Position();
         $instance->setPlace('Franca');
         $this->assertEquals('Franca', $instance->getPlace());

@@ -1,7 +1,7 @@
 <?php
 namespace Ophportunidades\DataAccess;
 
-use Ophportunidades\Entity\Position;
+use Ophportunidades\DataAccess\Entity\Position;
 use Ophportunidades\DataAccess\DataAccess;
 
 class DataAccessTest extends AbstractDataAccessTest
@@ -29,7 +29,7 @@ class DataAccessTest extends AbstractDataAccessTest
 
         $insertedPosition = $dataAccess->getById($id);
 
-        $this->assertInstanceOf('Ophportunidades\Entity\Position', $insertedPosition);
+        $this->assertInstanceOf('Ophportunidades\DataAccess\Entity\Position', $insertedPosition);
         $this->assertEquals($position2Insert->getTitle(), $insertedPosition->getTitle());
         $this->assertEquals($position2Insert->getDescription(), $insertedPosition->getDescription());
         $this->assertEquals($position2Insert->getPlace(), $insertedPosition->getPlace());

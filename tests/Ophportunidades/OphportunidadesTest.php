@@ -1,7 +1,7 @@
 <?php
 namespace Ophportunidades;
 
-use Ophportunidades\Entity\Position;
+use Ophportunidades\DataAccess\Entity\Position;
 use Ophportunidades\DataAccess\DataAccess;
 use Ophportunidades\DataAccess\AbstractDataAccessTest;
 

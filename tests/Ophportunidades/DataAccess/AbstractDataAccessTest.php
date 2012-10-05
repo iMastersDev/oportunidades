@@ -6,6 +6,7 @@ use \PDO;
 abstract class AbstractDataAccessTest extends \PHPUnit_Framework_TestCase
 {
     /**
+     *
      * @var \PDO
      */
     protected $pdo;
