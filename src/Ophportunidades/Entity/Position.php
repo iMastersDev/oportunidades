@@ -44,20 +44,20 @@ class Position
     
     public function setPlace($place=null)
     {
-    	
-    	if (is_string($place)) {
-    		$this->place = $place;
-    		
-    		return $this;
-    	}
-    	
-    	$message = sprintf('"%s" is not a valid place.', print_r($place, true));
-    	throw new \InvalidArgumentException($message);
+        
+        if (is_string($place)) {
+            $this->place = $place;
+            
+            return $this;
+        }
+        
+        $message = sprintf('"%s" is not a valid place.', print_r($place, true));
+        throw new \InvalidArgumentException($message);
     }
     
     public function getPlace()
     {
-    	return $this->place;
+        return $this->place;
     }
     
 }
