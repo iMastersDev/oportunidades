@@ -1,0 +1,17 @@
+{
+    "name": "imasters/ophportunidades",
+    "require": {
+        "phpunit/phpunit": "3.7.1"
+    },
+    "minimum-stability": "alpha",
+    "authors": [
+        {
+            "name": "Augusto Pascutti",
+            "email": "augusto@phpsp.org.br"
+        }
+    ],
+    "autoload": { 
+        "psr-0": {
+            "" : "src/" }
+    }
+}
