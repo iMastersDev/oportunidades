@@ -22,7 +22,7 @@ class DataAccessTest extends \PHPUnit_Framework_TestCase
 	
 	protected function setUp()
 	{
-		$this->pdo = new PDO('sqlite:memory:');
+		$this->pdo = new PDO('sqlite::memory:');
 		$this->pdo->exec('
 			CREATE TABLE IF NOT EXISTS position (
 				id INTEGER PRIMARY KEY,
