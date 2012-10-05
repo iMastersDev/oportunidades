@@ -1,17 +1,19 @@
 {
     "name": "imasters/ophportunidades",
-    "require": {
-        "phpunit/phpunit": "3.7.1"
-    },
     "minimum-stability": "alpha",
     "authors": [
         {
             "name": "Augusto Pascutti",
             "email": "augusto@phpsp.org.br"
+        },
+        {
+            "name": "Henrique Moody",
+            "email": "henriquemoody@gmail.com"
         }
     ],
     "autoload": { 
         "psr-0": {
-            "" : "src/" }
+            "" : "src/"
+        }
     }
 }

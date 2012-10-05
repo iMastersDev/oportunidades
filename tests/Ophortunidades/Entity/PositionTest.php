@@ -3,6 +3,7 @@ namespace Ophportunidades\Entity;
 
 class PositionTest extends \PHPUnit_Framework_TestCase
 {
+
     public function assertPreConditions()
     {
         $this->assertTrue(
@@ -51,4 +52,26 @@ class PositionTest extends \PHPUnit_Framework_TestCase
         $instance = new Position();
         $instance->setTitle($invalidTitle);
     }
+    
+    public function testShouldExistsGetterForTitle()
+    {
+        $instance = new Position();
+        $this->assertTrue(
+            method_exists($instance, 'getTitle'),
+            'There is no method getTitle on object'
+        );
+    }
+    
+    /**
+     * @depends testShouldExistsGetterForTitle
+     */
+    public function testShouldDefineAndRetrieveTheTitle()
+    {
+        $title      = 'oPHPortunidades';
+        $instance = new Position();
+        $instance->setTitle($title);
+
+        $this->assertEquals($title, $instance->getTitle());
+    }
+    
 }
