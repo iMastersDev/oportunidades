@@ -1,41 +1,17 @@
 <?php
 namespace Ophortunidades\DataAccess;
 
-use \PDO;
 use Ophportunidades\Entity\Position;
 use Ophportunidades\DataAccess\DataAccess;
 
-class DataAccessTest extends \PHPUnit_Framework_TestCase
+class DataAccessTest extends AbstractDataAccessTest
 {
-    /**
-     * @var \PDO
-     */
-    public $pdo;
-    
     public function assertPreConditions()
     {
         $this->assertTrue(
                 class_exists($class = 'Ophportunidades\DataAccess\DataAccess'),
                 'Class not found: '.$class
         );
-    }
-    
-    protected function setUp()
-    {
-        $this->pdo = new PDO('sqlite::memory:');
-        $this->pdo->exec('
-            CREATE TABLE IF NOT EXISTS position (
-                id INTEGER PRIMARY KEY,
-                title TEXT NOT NULL,
-                description TEXT NOT NULL,
-                place TEXT NOT NULL
-            );
-        ');
-    }
-    
-    protected function tearDown()
-    {
-        $this->pdo->exec('DROP TABLE position');
     }
     
     public function testInsertPosition()
