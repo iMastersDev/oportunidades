@@ -38,7 +38,7 @@ class DataAccess
 			return (int) $this->pdo->lastInsertId();
 		}
 		
-		throw new \RuntineException('Fail to insert some data');
+		throw new \RuntimeException('Fail to insert some data');
 	}
 	
 	public function getById($id)

@@ -26,9 +26,9 @@ class DataAccessTest extends \PHPUnit_Framework_TestCase
 		$this->pdo->exec('
 			CREATE TABLE IF NOT EXISTS position (
 				id INTEGER PRIMARY KEY,
-				title TEXT,
-				description TEXT,
-				place TEXT
+				title TEXT NOT NULL,
+				description TEXT NOT NULL,
+				place TEXT NOT NULL
 			);
 		');
 	}
@@ -56,5 +56,38 @@ class DataAccessTest extends \PHPUnit_Framework_TestCase
 		$this->assertEquals($position2Insert->getTitle(), $insertedPosition->getTitle());
 		$this->assertEquals($position2Insert->getDescription(), $insertedPosition->getDescription());
 		$this->assertEquals($position2Insert->getPlace(), $insertedPosition->getPlace());
+	}
+	
+	/**
+	 * @expectedException RuntimeException
+	 * @expectedExpcetionMessage Fail to insert some data
+	 */
+	public function testInsertWithNullPositionShouldThrownAnException()
+	{
+		$position2Insert = new Position();
+		
+		$dataAccess = new DataAccess($this->pdo);
+		$id = $insertedPosition = $dataAccess->insert($position2Insert);
+		
+		$this->assertNotEquals(1, $id);
+	}
+	
+	/**
+	 * @expectedException InvalidArgumentException
+	 */
+	public function testGetByIdWithAnInvalidArgument()
+	{
+		$dataAccess = new DataAccess($this->pdo);
+		$dataAccess->getById(null);
+	}
+	
+	/**
+	 * @expectedException RuntimeException
+	 * @expectedExceptionMessage Fail to retrieve the position
+	 */
+	public function testGetByIdWithAnInvalidID()
+	{
+		$dataAccess = new DataAccess($this->pdo);
+		$dataAccess->getById(-1);
 	}
 }
