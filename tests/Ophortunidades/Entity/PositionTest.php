@@ -114,21 +114,21 @@ class PositionTest extends \PHPUnit_Framework_TestCase
      * @expectedException InvalidArgumentException
      */
     public function testShouldThorwsAnExceptionWhenSettingNull() {
-    	$instance = new Position();
-    	$instance->setPlace();
+        $instance = new Position();
+        $instance->setPlace();
     }
     
     /**
      * @expectedException InvalidArgumentException
      */
     public function testShouldThrowsAnExceptionWhenSettingAnInvalidArgument() {
-    	$instance = new Position();
-    	$instance->setPlace(10);
+        $instance = new Position();
+        $instance->setPlace(10);
     }
     
     public function testGetterReturnsExactlySameValueThanSettedInSetter() {
-    	$instance = new Position();
-    	$instance->setPlace('Franca');
-    	$this->assertEquals('Franca', $instance->getPlace());
+        $instance = new Position();
+        $instance->setPlace('Franca');
+        $this->assertEquals('Franca', $instance->getPlace());
     }
 }
