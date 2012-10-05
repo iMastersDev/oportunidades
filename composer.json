@@ -1,7 +1,7 @@
 {
     "name": "imasters/ophportunidades",
     "require": {
-        "phpunit/phpunit": "3.7.1"
+        "phpunit/phpunit": "3.7@stable"
     },
     "minimum-stability": "alpha",
     "authors": [
@@ -13,5 +13,8 @@
     "autoload": { 
         "psr-0": {
             "" : "src/" }
+    },
+    "config": {
+        "bin-dir": "bin"
     }
 }

@@ -1,5 +1,5 @@
 {
-    "hash": "6762d76c826abeffa8cbfb60fd46781f",
+    "hash": "fd1ec8b9e398514b31ee0efd9d264056",
     "packages": [
         {
             "package": "phpunit/php-code-coverage",
@@ -23,7 +23,7 @@
         },
         {
             "package": "phpunit/phpunit",
-            "version": "3.7.1"
+            "version": "3.7.0"
         },
         {
             "package": "phpunit/phpunit-mock-objects",
@@ -39,7 +39,7 @@
 
     ],
     "minimum-stability": "alpha",
-    "stability-flags": [
-
-    ]
+    "stability-flags": {
+        "phpunit/phpunit": 0
+    }
 }
