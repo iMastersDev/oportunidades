@@ -9,7 +9,10 @@ class DataAccessTest extends AbstractDataAccessTest
 
     public function assertPreConditions()
     {
-        $this->assertTrue(class_exists($class = 'Ophportunidades\DataAccess\DataAccess'), 'Class not found: ' . $class);
+        $this->assertTrue(
+                class_exists($class = 'Ophportunidades\DataAccess\DataAccess'),
+                'Class not found: '.$class
+        );
     }
 
     public function testInsertPosition()
