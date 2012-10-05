@@ -90,4 +90,21 @@ class DataAccessTest extends \PHPUnit_Framework_TestCase
         $dataAccess = new DataAccess($this->pdo);
         $dataAccess->getById(-1);
     }
+    
+    public function testGetAll()
+    {
+    	$dataAccess = new DataAccess($this->pdo);
+    	$position2Insert = new Position();
+    	
+    	for ($i = 0; $i < 10; ++$i) {
+    		$position2Insert->setTitle('The job ' . $i);
+    		$position2Insert->setDescription('job description ' . $i);
+    		$position2Insert->setPlace('Rua dos bobos, ' . $i);
+    		
+    		$this->assertEquals($i + 1, $dataAccess->insert($position2Insert));
+    	}
+    	
+    	$this->assertCount(10, $dataAccess->getAll());
+    	
+    }
 }

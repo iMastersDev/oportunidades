@@ -74,4 +74,28 @@ class DataAccess
         
         throw new \InvalidArgumentException(print_r($id, true) . ' is an invalid id');
     }
+    
+    /**
+     * @throws \RuntimeException
+     * @return array[Ophportunidades\Entity\Position]
+     */
+    public function getAll()
+    {
+    	$stm = $this->pdo->prepare('
+                SELECT
+                    title,
+                    description,
+                    place
+                FROM
+                    position;
+            ');
+    	
+    	$stm->setFetchMode(PDO::FETCH_CLASS, 'Ophportunidades\Entity\Position');
+    	
+    	if ($stm->execute()) {
+    		return $stm->fetchAll();
+    	}
+    	
+    	throw new \RuntimeException('Fail to retrieve the positions');
+    }
 }
