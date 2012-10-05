@@ -8,6 +8,7 @@ class Position
 {
 
     protected $title;
+    protected $description;
 
     public function setTitle($string)
     {
@@ -23,5 +24,24 @@ class Position
     {
         return $this->title;
     }
+    
+    public function setDescription($description)
+    {
+        if (!is_string($description)) {
+            $message = sprintf('"%s"is not a valid description', print_r($description, true));
+            throw new \InvalidArgumentException($message);
+        }
+        $this->description = $description;
+
+        return $this;
+    }
+    
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+
+    
 
 }
