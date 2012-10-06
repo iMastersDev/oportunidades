@@ -4,13 +4,13 @@ namespace Ophportunidades\DataAccess;
 use Ophportunidades\DataAccess\Entity\Position;
 use Ophportunidades\DataAccess\DataAccess;
 
-class DataAccessTest extends AbstractDataAccessTest
+class PDOAccessTest extends AbstractDataAccessTest
 {
 
     public function assertPreConditions()
     {
         $this->assertTrue(
-                class_exists($class = 'Ophportunidades\DataAccess\DataAccess'),
+                class_exists($class = 'Ophportunidades\DataAccess\PDODataAccess'),
                 'Class not found: '.$class
         );
     }
@@ -22,7 +22,7 @@ class DataAccessTest extends AbstractDataAccessTest
         $position2Insert->setDescription('job description');
         $position2Insert->setPlace('Rua dos bobos, 0');
 
-        $dataAccess = new DataAccess($this->pdo);
+        $dataAccess = new PDODataAccess($this->pdo);
         $id = $dataAccess->insert($position2Insert);
 
         $this->assertEquals(1, $id);
@@ -43,7 +43,7 @@ class DataAccessTest extends AbstractDataAccessTest
     {
         $position2Insert = new Position();
 
-        $dataAccess = new DataAccess($this->pdo);
+        $dataAccess = new PDODataAccess($this->pdo);
         $id = $insertedPosition = $dataAccess->insert($position2Insert);
 
         $this->assertNotEquals(1, $id);
@@ -54,7 +54,7 @@ class DataAccessTest extends AbstractDataAccessTest
      */
     public function testGetByIdWithAnInvalidArgument()
     {
-        $dataAccess = new DataAccess($this->pdo);
+        $dataAccess = new PDODataAccess($this->pdo);
         $dataAccess->getById(null);
     }
 
@@ -64,13 +64,13 @@ class DataAccessTest extends AbstractDataAccessTest
      */
     public function testGetByIdWithAnInvalidID()
     {
-        $dataAccess = new DataAccess($this->pdo);
+        $dataAccess = new PDODataAccess($this->pdo);
         $dataAccess->getById(-1);
     }
 
     public function testGetAll()
     {
-        $dataAccess = new DataAccess($this->pdo);
+        $dataAccess = new PDODataAccess($this->pdo);
         $position2Insert = new Position();
 
         for($i = 0; $i < 10; ++$i) {

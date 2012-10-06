@@ -2,7 +2,7 @@
 namespace Ophportunidades;
 
 use Ophportunidades\DataAccess\Entity\Position;
-use Ophportunidades\DataAccess\DataAccess;
+use Ophportunidades\DataAccess\PDODataAccess;
 use Ophportunidades\DataAccess\AbstractDataAccessTest;
 
 class OphportunidadesTest extends AbstractDataAccessTest
@@ -20,7 +20,7 @@ class OphportunidadesTest extends AbstractDataAccessTest
 
     public function testAcceptFromUserInputWithFakePOSTData()
     {
-        $dataAccess = new DataAccess($this->pdo);
+        $dataAccess = new PDODataAccess($this->pdo);
         $ophportunidades = new Ophportunidades($dataAccess);
 
         $id = $ophportunidades->acceptFromUserInput();
@@ -36,7 +36,7 @@ class OphportunidadesTest extends AbstractDataAccessTest
     {
         $_POST['title'] = '';
 
-        $dataAccess = new DataAccess($this->pdo);
+        $dataAccess = new PDODataAccess($this->pdo);
         $ophportunidades = new Ophportunidades($dataAccess);
 
         $ophportunidades->acceptFromUserInput();
@@ -49,7 +49,7 @@ class OphportunidadesTest extends AbstractDataAccessTest
         $position->setDescription('job description');
         $position->setPlace('somewhere in time');
 
-        $dataAccess = new DataAccess($this->pdo);
+        $dataAccess = new PDODataAccess($this->pdo);
         $ophportunidades = new Ophportunidades($dataAccess);
 
         $id = $ophportunidades->create($position);
