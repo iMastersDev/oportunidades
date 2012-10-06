@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:ophp="urn:Ophportunidades/Presentation"
+            targetNamespace="urn:Ophportunidades/Presentation"
+            elementFormDefault="qualified">
+            
+    <xsd:element name="presentation" type="ophp:Presentation" />
+            
+    <xsd:complexType name="Presentation">
+        <xsd:sequence>
+            <xsd:element name="title" minOccurs="1" maxOccurs="1">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:minLength value="1" />
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="description" type="xsd:string" minOccurs="0" maxOccurs="1" />
+            <xsd:choice minOccurs="1" maxOccurs="1">
+                <xsd:element name="form" type="ophp:PresentationForm" />
+            </xsd:choice>
+        </xsd:sequence>
+    </xsd:complexType>
+    
+    <xsd:complexType name="PresentationForm">
+        <xsd:sequence>
+            <xsd:element name="caption" type="xsd:string" minOccurs="0" maxOccurs="1" />
+            <xsd:choice minOccurs="1" maxOccurs="unbounded">
+                <xsd:element name="field" type="ophp:PresentationFormField" />
+                <xsd:element name="group" type="ophp:PresentationFormFieldGroup" />
+            </xsd:choice>
+        </xsd:sequence>
+        <xsd:attribute name="action" type="xsd:anyURI" use="required" />
+        <xsd:attribute name="method" use="required">
+            <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                    <xsd:enumeration value="post" />
+                    <xsd:enumeration value="get" />
+                </xsd:restriction>
+            </xsd:simpleType>
+        </xsd:attribute>
+    </xsd:complexType>
+    
+    <xsd:complexType name="PresentationFormFieldGroup">
+        <xsd:sequence>
+            <xsd:element name="legend" type="xsd:string" minOccurs="0" maxOccurs="1" />
+            <xsd:element name="field" type="ophp:PresentationFormField" minOccurs="1" maxOccurs="unbounded" />
+        </xsd:sequence>
+    </xsd:complexType>
+    
+    <xsd:complexType name="PresentationFormField">
+        <xsd:simpleContent>
+            <xsd:extension base="xsd:string">
+		        <xsd:attribute name="name" type="xsd:Name" use="required" />
+		        <xsd:attribute name="type" type="xsd:string" use="required" />
+		        <xsd:attribute name="label" type="xsd:normalizedString" />
+            </xsd:extension>
+        </xsd:simpleContent>
+    </xsd:complexType>
+</xsd:schema>
