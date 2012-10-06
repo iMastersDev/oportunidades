@@ -1,0 +1,180 @@
+@font-face {
+    font-family: "Sansation Regular";
+    font-weight: normal;
+    src: url('/theme/default/font/Sansation-Regular/Sansation-Regular.eot') format('eot'),
+         url('/theme/default/font/Sansation-Regular/Sansation-Regular.woff') format('woff'),
+         url('/theme/default/font/Sansation-Regular/Sansation-Regular.ttf') format('truetype'),
+         url('/theme/default/font/Sansation-Regular/Sansation-Regular.svg') format('svg');
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-size: 1em;
+    font-family: "Sansation Regular", Arial, Helvetica;
+    text-decoration: none;
+    color: #42003e;
+}
+
+.main-width {
+    display: block;
+    width: 940px;
+    margin: 0 auto;
+}
+
+.clear:after {
+	display: block;
+    clear: both;
+    content: "";
+}
+
+button {
+    padding: 8px;
+    background-color: #dade43;
+    text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.8);
+    font-weight: bold;
+    color: #5b5e27;
+    border-radius: 8px;
+    border: 2px solid #e5e873;
+}
+
+header {
+    display: block;
+    background: url("/theme/default/img/pattern.jpg") repeat top left #350132;
+    padding: 60px 0;
+}
+
+    header h1 {
+        display: block;
+        font-size: 1.6em;
+        float: left;
+    }
+    
+        header h1 a {
+            color: #FFFFFF;
+            line-height: 43px;
+        }
+        
+    header #search {
+       float: right;
+    }
+        
+        header #search input {
+            background: #350132;
+            box-shadow: 2px 2px 6px rgba(40, 1, 37, 0.6) inset;
+            padding: 12px 24px 12px 12px;
+            border-radius: 8px;
+            color: #FFFFFF;
+            border: 1px solid #280027;
+        	width: 300px;
+        }
+        
+        header #search button {
+            width: 50px;
+        	background-image: url("/theme/default/img/lupa.jpg");
+        	background-position: center;
+        	background-repeat: no-repeat;
+        	text-indent: -1000px;
+        	overflow: hidden;
+        	margin-left: -52px;
+        }
+
+        
+footer {
+	margin: 60px 0;
+}
+footer ul {
+    padding-top: 40px;
+	margin-top: 60px;
+	border-top: 1px solid #f3f3f3;
+}
+
+    footer ul li {
+        display: block;
+        float: left;
+    }
+
+        footer ul li dt {
+            font-size: 1.2em;
+            color: #b9b9b9;
+            margin-bottom: 10px;
+        }
+
+            footer ul li dd a {
+                display: block;
+                text-indent: -1000px;
+                overflow: hidden;
+                margin-left: 30px;
+			    height: 60px;
+            	background-color: transparent;
+            	background-position: center;
+            	background-repeat: no-repeat;
+            }
+            
+    
+			footer ul li.imasters dl dd a {
+			    background-image: url("/theme/default/img/imasters-logo.png");
+			    width: 205px;
+			}
+
+    footer ul li.host {
+	   margin: 0 196px;
+    }
+    
+		footer ul li.host dl dd a {
+		    background-image: url("/theme/default/img/pagodabox-logo.png");
+		    width: 102px;
+			margin-left: 61px;
+		}
+
+		footer ul li.github dl dd a {
+		    background-image: url("/theme/default/img/github-logo.svg");
+		    width: 99px;
+		    margin-left: 50px;
+		}
+		
+/** create **/
+		
+article {
+	margin-top: 60px;
+}
+
+    article h2 {
+	   font-size: 1.4em;
+    }
+
+article form {
+	margin-top: 60px;
+}
+
+	form .field {
+		display: block;
+		margin: 20px auto;
+		width: 750px;
+	}
+		form .field:after {
+			content: "";
+			display: block;
+			clear: both;
+		}
+	
+	    form .field label {
+	    	float: left;
+	    	text-align: right;
+	    	width: 200px;
+	    	margin-right: 20px;
+	    	line-height: 40px;
+	    }
+	    
+	    form .field input {
+	    	width: 504px;
+	    	padding: 10px 12px;
+	    	border: 1px solid #d7d7d7;
+	    	border-radius: 6px;
+	    	background: #ececec;
+	    	box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.1) inset;
+	    }
+	    
+	    form .field button {
+		   float: right;
+	    }
