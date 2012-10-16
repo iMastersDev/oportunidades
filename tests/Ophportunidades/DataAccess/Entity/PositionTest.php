@@ -26,13 +26,13 @@ class PositionTest extends \PHPUnit_Framework_TestCase
         $instance = new Position();
         $title = 'Titulo da oferta de emprego';
         $return = $instance->setTitle($title);
-        $this->assertEquals($instance, $return, 'Rerturned value should be the same instance for fluent interface');
+        $this->assertEquals($instance, $return, 'Returned value should be the same instance for fluent interface');
         $this->assertAttributeEquals($title, 'title', $instance, 'Attribute was not correctly set');
     }
 
     /**
      * @expectedException InvalidArgumentException
-     * @expectedExpcetionMessage Empty title not allowed
+     * @expectedExceptionMessage Empty title not allowed
      */
     public function testSetTitleWithInvalidDataShouldThrownAnException()
     {
@@ -59,7 +59,7 @@ class PositionTest extends \PHPUnit_Framework_TestCase
         $instance = new Position();
         $description = 'Descrição da oferta de emprego';
         $return = $instance->setDescription($description);
-        $this->assertEquals($instance, $return, 'Rerturned value should be the same instance for fluent interface');
+        $this->assertEquals($instance, $return, 'Returned value should be the same instance for fluent interface');
         $this->assertAttributeEquals($description, 'description', $instance, 'Attribute was not correctly set');
     }
 
