@@ -28,7 +28,7 @@ class Position
     {
         if (!is_string($description)) {
             $message = sprintf('"%s"is not a valid description', print_r($description, true));
-            throw new \InvalidArgumentException($message);
+            throw new Argument($message);
         }
         $this->description = $description;
 
@@ -49,7 +49,7 @@ class Position
         }
 
         $message = sprintf('"%s" is not a valid place.', print_r($place, true));
-        throw new \InvalidArgumentException($message);
+        throw new Argument($message);
     }
 
     public function getPlace()
