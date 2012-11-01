@@ -2,10 +2,15 @@
 namespace Ophportunidades\DataAccess;
 
 use \PDO;
+use \InvalidArgumentException   as Argument;
+use \RuntimeException           as Runtime;
 use Ophportunidades\DataAccess\Entity\Position;
 
 class PDODataAccess implements DataAccess
 {
+    const SQL_INSERT = 'INSERT INTO position( title, description, place ) VALUES (:title, :description, :place)';
+    const SQL_BY_ID = 'SELECT title, description, place FROM position WHERE id=:id';
+    const SQL_SELECT_ALL = 'SELECT title, description, place FROM position';
     /**
      *
      * @var \PDO
@@ -19,18 +24,7 @@ class PDODataAccess implements DataAccess
 
     public function insert(Position $position)
     {
-        $stm = $this->pdo->prepare(
-            'INSERT INTO position(
-                title,
-                description,
-                place
-            ) VALUES (
-                :title,
-                :description,
-                :place
-            );'
-        );
-
+        $stm = $this->pdo->prepare(self::SQL_INSERT);
         $stm->bindValue(':title', $position->getTitle(), PDO::PARAM_STR);
         $stm->bindValue(':description', $position->getDescription(), PDO::PARAM_STR);
         $stm->bindValue(':place', $position->getPlace(), PDO::PARAM_STR);
@@ -39,63 +33,53 @@ class PDODataAccess implements DataAccess
             return (int) $this->pdo->lastInsertId();
         }
 
-        throw new \RuntimeException('Fail to insert some data');
+        throw new Runtime('Fail to insert some data');
     }
 
+    /**
+     * @throws InvalidArgumentException For invalid id.
+     * @throws RuntimeException         For not found position.
+     * @param  integer  $id
+     * @return Ophportunidades\DataAccess\Entity\Position
+     */
     public function getById($id)
     {
-        if (is_int($id)) {
-            $position = null;
-            $stm = $this->pdo->prepare(
-                'SELECT
-                    title,
-                    description,
-                    place
-                FROM
-                    position
-                WHERE
-                    id=:id;'
-            );
-
-            $stm->setFetchMode(PDO::FETCH_CLASS, 'Ophportunidades\DataAccess\Entity\Position');
-            $stm->bindValue(':id', $id, PDO::PARAM_INT);
-
-            if ($stm->execute()) {
-                $position = $stm->fetch();
-
-                $stm->closeCursor();
-            }
-
-            if (!$position instanceof Position) {
-                throw new \RuntimeException('Fail to retrieve the position');
-            }
-
-            return $position;
+        if (!is_int($id) || $id <= 0) {
+            $msg = print_r($id, true) . ' is an invalid id';
+            throw new Argument($msg);
         }
 
-        throw new \InvalidArgumentException(print_r($id, true) . ' is an invalid id');
+        $position       = null;
+        $stm            = $this->pdo->prepare(self::SQL_BY_ID);
+        $fetchIntoClass = 'Ophportunidades\DataAccess\Entity\Position';
+        $stm->setFetchMode(PDO::FETCH_CLASS, $fetchIntoClass);
+        $stm->bindValue(':id', $id, PDO::PARAM_INT);
+
+        if ($stm->execute()) {
+            $position = $stm->fetch();
+            $stm->closeCursor();
+        }
+
+        if (!$position instanceof Position) {
+            throw new Runtime('Fail to retrieve the position');
+        }
+
+        return $position;
     }
 
     /**
      *
-     * @throws \RuntimeException
+     * @throws RuntimeException
      */
     public function getAll()
     {
-        $stm = $this->pdo->prepare(
-            'SELECT title,
-                description,
-                place
-            FROM
-                position;'
-        );
-
-        $stm->setFetchMode(PDO::FETCH_CLASS, 'Ophportunidades\Entity\Position');
-
+        $stm            = $this->pdo->prepare(self::SQL_SELECT_ALL);
+        $fetchIntoClass = 'Ophportunidades\DataAccess\Entity\Position';
+        $stm->setFetchMode(PDO::FETCH_CLASS, $fetchIntoClass);
         if ($stm->execute()) {
             return $stm->fetchAll();
         }
 
-        throw new \RuntimeException('Fail to retrieve the positions');
+        throw new Runtime('Fail to retrieve the positions');
     }
 }

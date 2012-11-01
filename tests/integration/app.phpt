@@ -2,7 +2,7 @@
 Testa as configurações utilizadas pelo Respect/Config.
 --FILE--
 <?php
-require 'public/bootstrap.php';
+require __DIR__.'/../../public/bootstrap.php';
 
 use Respect\Config\Container;
 
