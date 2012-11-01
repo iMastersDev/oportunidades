@@ -4,8 +4,11 @@ ini_set('display_errors', 1);
 error_reporting(E_ALL | E_STRICT);
 date_default_timezone_set('America/Sao_Paulo');
 
-define('DS', DIRECTORY_SEPARATOR);
-define('APP_ROOT', realpath(__DIR__ . DS . '..'));
+define('DS'         , DIRECTORY_SEPARATOR);
+define('APP_ROOT'   , realpath(__DIR__ . DS . '..'));
+define('APP_DB_DSN' , getenv('OPHPORTUNIDADES_DB_DSN')  ?: 'sqlite::memory:');
+define('APP_DB_USER', getenv('OPHPORTUNIDADES_DB_USER') ?: '');
+define('APP_DB_PASS', getenv('OPHPORTUNIDADES_DB_PASS') ?: '');
 
 $composer_autoload = APP_ROOT . DS . 'vendor' . DS . 'autoload.php';
 if (!@include($composer_autoload)) {
