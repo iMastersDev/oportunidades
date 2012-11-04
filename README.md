@@ -1,4 +1,4 @@
-Oportunidades
+Oportunidades [![Build Status](https://travis-ci.org/iMastersDev/oportunidades.png?branch=travis,develop,master)](https://travis-ci.org/iMastersDev/oportunidades?branch=travis,develop,master)
 =============
 
 Plataforma para organização de oportunidades de trabalho em PHP.
