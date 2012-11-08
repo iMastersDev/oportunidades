@@ -1,6 +1,6 @@
 {
     "name": "imasters/ophportunidades",
-    "require": {
+    "require-dev": {
         "phpunit/phpunit": "3.7@stable"
     },
     "minimum-stability": "alpha",
