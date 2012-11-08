@@ -57,4 +57,7 @@ update: .check-installation
 code-sniffer: .check-installation
 	$(PHPCS) --standard=$(PHPCS_STANDARD) src/
 
+code-sniffer-report: .check-installation
+	$(PHPCS) --report-summary --report-source --report-gitblame --standard=$(PHPCS_STANDARD) src
+
 .PHONY: test clean
