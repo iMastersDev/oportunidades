@@ -22,6 +22,7 @@ GIT_STAGE := $(shell git status -s | wc -l | tr -d " ")
 clean:
 	@echo "Removing Composer..."
 	rm -f composer.phar
+	rm -f composer.lock
 	rm -rf vendor
 
 test: .check-installation
@@ -38,7 +39,7 @@ testdox: .check-installation
 coverage: .check-installation
 	$(PHPUNIT) -c $(PHPUNIT_XML) --coverage-text tests/	
 
-install: clean .check-installation
+install: clean .check-composer
 	@echo "Executing a composer installation of development dependencies.."
 	$(COMPOSER) install --dev
 
