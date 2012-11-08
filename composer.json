@@ -1,13 +1,21 @@
 {
     "name": "imasters/ophportunidades",
+    "require": {
+        "php": ">=5.3"
+    },
     "require-dev": {
-        "phpunit/phpunit": "3.7@stable"
+        "phpunit/phpunit": "3.7@stable",
+        "squizlabs/php_codesniffer": "dev-master"
     },
     "minimum-stability": "alpha",
     "authors": [
         {
             "name": "Augusto Pascutti",
             "email": "augusto@phpsp.org.br"
+        },
+        {
+            "name": "Rogerio Prado de Jesus",
+            "email": "rogeriopradoj@gmail.com"
         }
     ],
     "autoload": {
