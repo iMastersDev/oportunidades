@@ -1,7 +1,10 @@
 COMPOSER = php composer.phar
 VENDOR_DIR = vendor
-PHPUNIT = bin/phpunit
+BIN_DIR = bin
+PHPUNIT = $(BIN_DIR)/phpunit
 PHPUNIT_XML = tests/phpunit.xml
+PHPCS = $(BIN_DIR)/phpcs
+PHPCS_STANDARD = PSR2
 CURRENT_BRANCH := $(shell git branch | grep '*' | cut -d ' ' -f 2)
 BRANCHES := $(shell git branch | grep -v "$(CURRENT_BRANCH)" | tr -d " " | tr "\\n" " ")
 GIT_STAGE := $(shell git status -s | wc -l | tr -d " ")
@@ -13,6 +16,8 @@ GIT_STAGE := $(shell git status -s | wc -l | tr -d " ")
 .check-installation: .check-composer
 	@echo "Checking for vendor directory..."
 	@test -d $(VENDOR_DIR) || make install
+	@echo "Checking for bin directory..."
+	@test -d $(BIN_DIR) || make install
 
 .check-no-changes:
 	@echo "Checking if git stage is clean..."
@@ -23,7 +28,9 @@ clean:
 	@echo "Removing Composer..."
 	rm -f composer.phar
 	rm -f composer.lock
-	rm -rf vendor
+	rm -rf $(VENDOR_DIR)
+	rm -f bin/phpunit
+	rm -f bin/phpcs
 
 test: .check-installation
 	$(PHPUNIT) -c $(PHPUNIT_XML) tests/
@@ -46,5 +53,8 @@ install: clean .check-composer
 update: .check-installation
 	@echo "Executing a composer update of development dependencies.."
 	$(COMPOSER) update --dev
+
+code-sniffer: .check-installation
+	$(PHPCS) --standard=$(PHPCS_STANDARD) src/
 
 .PHONY: test clean
