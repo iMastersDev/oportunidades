@@ -19,8 +19,8 @@ class PDODataAccess implements DataAccess
 
     public function insert(Position $position)
     {
-        $stm = $this->pdo->prepare('
-            INSERT INTO position(
+        $stm = $this->pdo->prepare(
+            'INSERT INTO position(
                 title,
                 description,
                 place
@@ -28,8 +28,8 @@ class PDODataAccess implements DataAccess
                 :title,
                 :description,
                 :place
-            );
-        ');
+            );'
+        );
 
         $stm->bindValue(':title', $position->getTitle(), PDO::PARAM_STR);
         $stm->bindValue(':description', $position->getDescription(), PDO::PARAM_STR);
@@ -46,16 +46,16 @@ class PDODataAccess implements DataAccess
     {
         if (is_int($id)) {
             $position = null;
-            $stm = $this->pdo->prepare('
-                SELECT
+            $stm = $this->pdo->prepare(
+                'SELECT
                     title,
                     description,
                     place
                 FROM
                     position
                 WHERE
-                    id=:id;
-            ');
+                    id=:id;'
+            );
 
             $stm->setFetchMode(PDO::FETCH_CLASS, 'Ophportunidades\DataAccess\Entity\Position');
             $stm->bindValue(':id', $id, PDO::PARAM_INT);
@@ -82,14 +82,13 @@ class PDODataAccess implements DataAccess
      */
     public function getAll()
     {
-        $stm = $this->pdo->prepare('
-                SELECT
-                    title,
-                    description,
-                    place
-                FROM
-                    position;
-            ');
+        $stm = $this->pdo->prepare(
+            'SELECT title,
+                description,
+                place
+            FROM
+                position;'
+        );
 
         $stm->setFetchMode(PDO::FETCH_CLASS, 'Ophportunidades\Entity\Position');
 
