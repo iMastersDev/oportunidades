@@ -1,6 +1,6 @@
 COMPOSER = php composer.phar
 VENDOR_DIR = vendor
-BIN_DIR = bin
+BIN_DIR = vendor/bin
 PHPUNIT = $(BIN_DIR)/phpunit
 PHPUNIT_XML = tests/phpunit.xml
 PHPCS = $(BIN_DIR)/phpcs
