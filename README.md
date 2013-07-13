@@ -1,18 +1,26 @@
-Oportunidades [![Build Status](https://travis-ci.org/iMastersDev/oportunidades.png?branch=travis,develop,master)](https://travis-ci.org/iMastersDev/oportunidades?branch=travis,develop,master)
-=============
+# Oportunidades [![Build Status](https://travis-ci.org/iMastersDev/oportunidades.png?branch=develop,master)](https://travis-ci.org/iMastersDev/oportunidades?branch=travis,develop,master)
 
-Plataforma para organização de oportunidades de trabalho em PHP.
+Plataforma para organização de oportunidades de trabalho em PHP. **(Ainda em desenvolvimento)**
 
-### Como postar oportunidades
+## Requisitos para desenvolvimento
 
-	Aguardando o desenvolvimento do produto primeiro.
+- [Vagrant](http://vagrantup.com)
 
-### Como contribuir
+## Worflow GIT e Versionamento
 
-	Aguardando sua contribuição
+Seguem as descrições dos branches utilizados:
 
-Alguns links interessantes
---------------------------
+- **master**: É o branch estável, *merge* aqui só de features inteiras.
+- **develop**: É o branch instável, buscaremos deixar ele o mais estável possível mas os merges de desenvolvimento devem ser feitos aqui antes de ir ao master.
+- **<issue>-<short-title>**: Branches relacionadas a issues no repositório do GitHub.
+
+O versionamento utilizado para as tags é o [SemVer](http://semver.org).
+
+## Contribuindo
+
+Basta interagir nas [issues](https://github.com/iMastersDev/oportunidades/issues), ou criar novas. Contribuições de código e/ou documentação também são muito bem vindas porém se atente aos padrões de codificação adotados pela [PSR-2](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md), códigos fora do padrão serão escrotamente ridicularizados e descartados :).
+
+## Alguns links interessantes
 
 * [Repositório oficial](https://github.com/iMastersDev/oportunidades): Onde tudo é discutido e feito.
 * [iMasters](http://imasters.com.br/): Organizadores dos Hangouts.
