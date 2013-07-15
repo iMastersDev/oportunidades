@@ -5,3 +5,4 @@ composer.lock
 .vagrant
 phpunit.xml
 *.swp
+reports

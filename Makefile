@@ -32,6 +32,9 @@ testdox: .check-installation
 coverage: .check-installation
 	$(PHPUNIT) --coverage-text
 
+coverage-html: .check-installation
+	$(PHPUNIT) -c $(PHPUNIT_XML) --coverage-html=reports/coverage tests/
+
 install: clean .check-composer
 	@echo "Executing a composer installation of development dependencies.."
 	$(COMPOSER) install --dev
@@ -46,4 +49,4 @@ code-sniffer: .check-installation
 code-sniffer-report: .check-installation
 	$(PHPCS) --report-summary --report-source --report-gitblame --standard=$(PHPCS_STANDARD) src
 
-.PHONY: test clean testdox coverage install update code-sniffer code-sniffer-report
+.PHONY: test clean testdox coverage coverage-html install update code-sniffer code-sniffer-report
