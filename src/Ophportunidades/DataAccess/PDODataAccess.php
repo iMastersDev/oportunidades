@@ -2,9 +2,9 @@
 namespace Ophportunidades\DataAccess;
 
 use \PDO;
-use \InvalidArgumentException   as Argument;
 use \RuntimeException           as Runtime;
 use Ophportunidades\DataAccess\Entity\Position;
+use Ophportunidades\Validation\Validator as v;
 
 class PDODataAccess implements DataAccess
 {
@@ -44,10 +44,7 @@ class PDODataAccess implements DataAccess
      */
     public function getById($id)
     {
-        if (!is_int($id) || $id <= 0) {
-            $msg = print_r($id, true) . ' is an invalid id';
-            throw new Argument($msg);
-        }
+        v::id()->assert($id);
 
         $position       = null;
         $stm            = $this->pdo->prepare(self::SQL_BY_ID);

@@ -126,9 +126,10 @@ class PDOAccessTest extends \PHPUnit_Framework_TestCase
      * @depends         testInstantiation
      * @cover           Ophportunidades\DataAccess\DataAccess
      * @cover           Ophportunidades\DataAccess\PDODataAccess::getById
+     * @cover           Ophportunidades\Validation\Rules\Id
      * @dataProvider    invalidIds
      * @expectedException           InvalidArgumentException
-     * @expectedExceptionMessage    is an invalid id
+     * @expectedExceptionMessage    These rules must pass for
      */
     public function testGetByIdShouldThrowExceptionWithAnInvalid($invalidId)
     {
