@@ -2,12 +2,7 @@
 Testa as configurações utilizadas pelo Respect/Config.
 --FILE--
 <?php
-require __DIR__.'/../../public/bootstrap.php';
-
-use Respect\Config\Container;
-
-$ini       = APP_ROOT.'/conf/app.ini';
-$container = new Container($ini);
+$container = require __DIR__.'/../../public/bootstrap.php';
 
 var_dump($container->db instanceof Pdo);
 var_dump($container->data instanceof Ophportunidades\DataAccess\PDODataAccess);

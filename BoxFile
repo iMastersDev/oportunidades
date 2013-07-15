@@ -1,11 +1,12 @@
 global:
   env:
     - APP_NAME: ophportunidades
+    - OPHPORTUNIDADES_ENV: live
 
 web1:
   name: front1
   document_root: public
-  php_version: 5.3.10
+  php_version: 5.4.14
   php_extensions:
     - apc
     - pdo_mysql

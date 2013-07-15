@@ -1,36 +1,36 @@
 <?php
 
-ini_set('display_errors', 1);
-error_reporting(E_ALL | E_STRICT);
-date_default_timezone_set('America/Sao_Paulo');
-
-define('DS'         , DIRECTORY_SEPARATOR);
-define('APP_ROOT'   , realpath(__DIR__ . DS . '..'));
-define('APP_DB_DSN' , getenv('OPHPORTUNIDADES_DB_DSN')  ?: 'sqlite::memory:');
-define('APP_DB_USER', getenv('OPHPORTUNIDADES_DB_USER') ?: '');
-define('APP_DB_PASS', getenv('OPHPORTUNIDADES_DB_PASS') ?: '');
-
+define('DS', DIRECTORY_SEPARATOR);
+define('APP_ROOT', realpath(__DIR__ . DS . '..'));
 $composer_autoload = APP_ROOT . DS . 'vendor' . DS . 'autoload.php';
-if (!@include($composer_autoload)) {
-
-    /* Include path */
-    set_include_path(implode(PATH_SEPARATOR, array(
-        __DIR__ . '/../src',
-        get_include_path(),
-    )));
-
-    /* PEAR autoloader */
-    spl_autoload_register(
-        function($className) {
-            $filename = strtr($className, '\\', DIRECTORY_SEPARATOR) . '.php';
-            foreach (explode(PATH_SEPARATOR, get_include_path()) as $path) {
-                $path .= DIRECTORY_SEPARATOR . $filename;
-                if (is_file($path)) {
-                    require_once $path;
-                    return true;
-                }
-            }
-            return false;
-        }
-    );
+if (false === file_exists($composer_autoload)) {
+    throw new RuntimeException('Please install composer dependencies.');
 }
+
+include $composer_autoload;
+chdir(APP_ROOT);
+return call_user_func(
+    // Efetua o bootstrap da aplicação apartir de um container de dependências.
+    function(Respect\Config\Container $config) {
+        ini_set('display_errors', $config->display_errors);
+        error_reporting($config->error_reporting);
+        date_default_timezone_set($config->timezone);
+
+        return $config;
+    },
+    // Retorna o container de dependências.
+    call_user_func(function() {
+        try {
+            define('APP_ENV', filter_var(getenv('OPHPORTUNIDADES_ENV') ?: 'dev', FILTER_SANITIZE_STRING));
+            define('APP_DB_DSN', filter_var(getenv('OPHPORTUNIDADES_DB_DSN') ?: 'sqlite::memory:', FILTER_SANITIZE_STRING));
+            define('APP_DB_USER', filter_var(getenv('OPHPORTUNIDADES_DB_USER') ?: ':', FILTER_SANITIZE_STRING));
+            define('APP_DB_PASS', filter_var(getenv('OPHPORTUNIDADES_DB_PASS') ?: ':', FILTER_SANITIZE_STRING));
+
+            $filename = APP_ROOT.DS.'conf'.DS.'app.'.APP_ENV.'.ini';
+            return new Respect\Config\Container($filename);
+        } catch (Exception $e) {
+            header('HTTP/1.1 500 Premature server error');
+            throw new RuntimeException('Premature server error', __LINE__, $e);
+        }
+    })
+)->application;
