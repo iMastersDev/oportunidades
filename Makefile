@@ -4,9 +4,6 @@ BIN_DIR = bin
 PHPUNIT = $(BIN_DIR)/phpunit
 PHPCS = $(BIN_DIR)/phpcs
 PHPCS_STANDARD = PSR2
-CURRENT_BRANCH := $(shell git branch | grep '*' | cut -d ' ' -f 2)
-BRANCHES := $(shell git branch | grep -v "$(CURRENT_BRANCH)" | tr -d " " | tr "\\n" " ")
-GIT_STAGE := $(shell git status -s | wc -l | tr -d " ")
 
 .check-composer:
 	@echo "Checking if Composer is installed..."
@@ -18,11 +15,6 @@ GIT_STAGE := $(shell git status -s | wc -l | tr -d " ")
 	@echo "Checking for bin directory..."
 	@test -d $(BIN_DIR) || make install
 
-.check-no-changes:
-	@echo "Checking if git stage is clean..."
-	@test $(GIT_STAGE) -eq "0" || exit 10;
-	@echo "Git stage is clean."
-
 clean:
 	@echo "Removing Composer..."
 	rm -f composer.phar
@@ -33,11 +25,6 @@ clean:
 
 test: .check-installation
 	$(PHPUNIT)
-
-test-branches: .check-no-changes
-	@echo "Current branch: $(CURRENT_BRANCH)";
-	@echo "Branches to run on: $(BRANCHES)"
-	@$(foreach branch,$(BRANCHES), git checkout $(branch) & test -f Makefile & make test)
 
 testdox: .check-installation
 	$(PHPUNIT) --testdox
@@ -59,4 +46,4 @@ code-sniffer: .check-installation
 code-sniffer-report: .check-installation
 	$(PHPCS) --report-summary --report-source --report-gitblame --standard=$(PHPCS_STANDARD) src
 
-.PHONY: test clean
+.PHONY: test clean testdox coverage install update code-sniffer code-sniffer-report
