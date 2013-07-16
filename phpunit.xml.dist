@@ -1,6 +1,6 @@
 <phpunit backupGlobals="false"
          backupStaticAttributes="false"
-         bootstrap="../public/bootstrap.php"
+         bootstrap="public/bootstrap.php"
          cacheTokens="true"
          colors="false"
          convertErrorsToExceptions="true"
@@ -10,9 +10,14 @@
          stopOnFailure="false"
          syntaxCheck="false"
          verbose="false">
+    <testsuites>
+        <testsuite name="PHPUnit">
+            <directory>tests/Ophportunidades</directory>
+        </testsuite>
+    </testsuites>
     <filter>
         <whitelist>
-            <directory>../src/Ophportunidades</directory>
+            <directory>src/Ophportunidades</directory>
         </whitelist>
     </filter>
 </phpunit>

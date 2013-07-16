@@ -2,7 +2,6 @@ COMPOSER = php composer.phar
 VENDOR_DIR = vendor
 BIN_DIR = bin
 PHPUNIT = $(BIN_DIR)/phpunit
-PHPUNIT_XML = tests/phpunit.xml
 PHPCS = $(BIN_DIR)/phpcs
 PHPCS_STANDARD = PSR2
 CURRENT_BRANCH := $(shell git branch | grep '*' | cut -d ' ' -f 2)
@@ -33,7 +32,7 @@ clean:
 	rm -f bin/phpcs
 
 test: .check-installation
-	$(PHPUNIT) -c $(PHPUNIT_XML) tests/
+	$(PHPUNIT)
 
 test-branches: .check-no-changes
 	@echo "Current branch: $(CURRENT_BRANCH)";
@@ -41,10 +40,10 @@ test-branches: .check-no-changes
 	@$(foreach branch,$(BRANCHES), git checkout $(branch) & test -f Makefile & make test)
 
 testdox: .check-installation
-	$(PHPUNIT) -c $(PHPUNIT_XML) --testdox tests/
+	$(PHPUNIT) --testdox
 
 coverage: .check-installation
-	$(PHPUNIT) -c $(PHPUNIT_XML) --coverage-text tests/	
+	$(PHPUNIT) --coverage-text
 
 install: clean .check-composer
 	@echo "Executing a composer installation of development dependencies.."
