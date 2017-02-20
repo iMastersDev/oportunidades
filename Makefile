@@ -1,6 +1,6 @@
 COMPOSER = php composer.phar
 VENDOR_DIR = vendor
-BIN_DIR = bin
+BIN_DIR = vendor/bin
 PHPUNIT = $(BIN_DIR)/phpunit
 PHPCS = $(BIN_DIR)/phpcs
 PHPCS_STANDARD = PSR2
